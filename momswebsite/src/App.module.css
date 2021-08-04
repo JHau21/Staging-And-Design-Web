@@ -1,0 +1,9 @@
+.root {
+	position: absolute; /* Position absolute to fit the container to the entire screen */
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 0; /* Set the z-index to 0 to make placing container over the root container easier */
+	overflow-y: scroll; /* Since the first page is quite large relative to the screen, let's set the overflow as scroll */
+}
