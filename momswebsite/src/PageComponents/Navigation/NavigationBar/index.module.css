@@ -10,7 +10,6 @@
     justify-content: space-between;
     padding-left: 30px;
     padding-right: 30px;
-    border: 3px solid green;
 }
 
 .linkContainer {
@@ -18,16 +17,35 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-right: 3px solid #ffffff;
+}
+
+.linkContainer:hover {
+    cursor: pointer;
+    border-right: 3px solid #fbf37c;
 }
 
 .linkText {
     text-decoration: none;
-    color: #ffffff;
     padding-right: 30px;
 }
 
 .linkText:hover {
     color: #fbf37c;
     cursor: pointer;
+}
+
+.white {
+    color: #ffffff;
+}
+
+.whiteBar {
+    border-right: 3px solid #ffffff;
+}
+
+.yellow {
+    color: #fbf37c;
+}
+
+.yellowBar {
+    border-right: 3px solid #fbf37c;
 }
