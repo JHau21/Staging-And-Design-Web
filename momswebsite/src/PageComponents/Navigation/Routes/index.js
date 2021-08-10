@@ -7,6 +7,7 @@ import Services from "../../ServicesPage";
 import Schedule from "../../SchedulePage";
 import Home from "../../HomePage";
 import About from "../../AboutPage";
+import Footer from "../../../Footer";
 
 /**
  * This contains all routes on the website
@@ -46,6 +47,9 @@ const Routes = () => {
             <About />
           </Route>
         </Switch>
+        <Route path="/">
+          <Footer />
+        </Route>
       </Router>
     </div>
   );

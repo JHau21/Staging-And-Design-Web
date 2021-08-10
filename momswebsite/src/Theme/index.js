@@ -2,7 +2,8 @@ const palette = {
   white: "#ffffff",
   yellow: "#fbf37c",
   lightGray: "#7f7f7f",
-  darkGary: "#58555a",
+  darkGray: "#58555a",
+  darkestGray: "#282629",
   black: "#000000",
   cyan: "#137575",
 };
