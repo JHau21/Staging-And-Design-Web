@@ -7,3 +7,8 @@
 	z-index: 0; /* Set the z-index to 0 to make placing container over the root container easier */
 	overflow-y: scroll; /* Since the first page is quite large relative to the screen, let's set the overflow as scroll */
 }
+
+.button {
+	width: 10;
+	height: 10;
+}

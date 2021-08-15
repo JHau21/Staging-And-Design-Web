@@ -1,6 +1,8 @@
 const palette = {
   white: "#ffffff",
   yellow: "#fbf37c",
+  hoverYellow: "#a39b42",
+  lightestGray: "#d3d3d3",
   lightGray: "#7f7f7f",
   darkGary: "#58555a",
   black: "#000000",
