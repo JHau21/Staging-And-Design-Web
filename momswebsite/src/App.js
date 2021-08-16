@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import Routes from "./PageComponents/Navigation/Routes";
+import Swiper from "./Swiper";
 
 import { theme } from "./Theme/index";
 import styles from "./App.module.css";
@@ -26,6 +27,7 @@ function App() {
       style={{ backgroundColor: theme.palette.cyan }}
     >
       <Routes />
+      <Swiper root={styles.testingSwiperSizing} />
     </div>
   );
 }
