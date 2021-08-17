@@ -7,6 +7,7 @@ import styles from "./index.module.css";
 const Swiper = ({
   images = [
     "http://hometenders.com/wp-content/uploads/2018/11/Hometenders-Home-Staging-and-Design-St-Louis-MO-5.jpg",
+    "http://hometenders.com/wp-content/uploads/2018/11/Hometenders-Home-Staging-and-Design-St-Louis-MO-5.jpg",
   ],
   loop,
   onClick,
@@ -23,13 +24,16 @@ const Swiper = ({
   const imagesRef = useRef(null);
 
   const handleSwipeAndArrowClick = (direction = "") => {
-    if (direction === "left") {
-      // handle a left swipe
-    } else if (direction === "right") {
-      // handle a right swipe
-    } else {
-      // Do click and drag control here
-    }
+    console.log(direction, imagesRef);
+    // const currentOffset = imagesRef.current.offsetWidth;
+    // imagesRef.current.offsetWidth += currentOffset;
+    // if (direction === "left") {
+    //   // handle a left swipe
+    // } else if (direction === "right") {
+    //   // handle a right swipe
+    // } else {
+    //   // Do click and drag control here
+    // }
   };
 
   return (
@@ -42,7 +46,7 @@ const Swiper = ({
             ? null
             : { transform: "rotate(180deg)", top: "45%", left: "1%" }
         }
-        onClick={handleSwipeAndArrowClick("left")}
+        onClick={() => handleSwipeAndArrowClick("left")}
       >
         <img className={arrowStyle} src={arrow} />
       </div>
@@ -53,11 +57,15 @@ const Swiper = ({
             ? null
             : { top: "45%", right: "0%" }
         }
-        onClick={handleSwipeAndArrowClick("right")}
+        onClick={() => handleSwipeAndArrowClick("right")}
       >
         <img className={arrowStyle} src={arrow} />
       </div>
-      <div className={styles.alignedImages} ref={imagesRef}>
+      <div
+        onScroll={() => handleSwipeAndArrowClick()}
+        className={styles.alignedImages}
+        ref={imagesRef}
+      >
         {images.map((image) => (
           <img src={image} className={styles.image} />
         ))}

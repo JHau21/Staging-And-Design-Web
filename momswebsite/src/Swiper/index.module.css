@@ -9,6 +9,9 @@
     overflow-x: scroll;
     width: inherit;
     height: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     border: 3px solid red;
 }
 
@@ -23,8 +26,8 @@
     align-items: center;
     justify-content: space-around;
     position: absolute;
-    height: 35px;
-    width: 35px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
     background-color: #ffffff;
 }
