@@ -10,7 +10,7 @@ const Swiper = ({
     "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG91c2V8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
     "https://media.architecturaldigest.com/photos/56b524de4ac3d842677b9ac0/master/w_2323,h_1548,c_limit/home-office-01.jpg",
   ],
-  loop,
+  loop = false,
   onClick,
   root = styles.root,
   autoPlay,
@@ -24,10 +24,16 @@ const Swiper = ({
 }) => {
   const imagesRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [toMapImages, setToMapImages] = useState([]);
+
+  // In order to create a seamless transition when scrolling to either end of the container, let's place the images in state hook to easily modify array
+  useEffect(() => {
+    setToMapImages(images);
+  }, []);
 
   const handleSwipeAndArrowClick = (direction = "") => {
     const imageWidth = imagesRef.current.scrollWidth / images.length; // Get the width of each image
-    const currIndex = imagesRef.current.scrollLeft / imageWidth;
+    const currIndex = Math.round(imagesRef.current.scrollLeft / imageWidth); // Need to round the index value to prevent swiper from switching to halfway in between images
     // If we go right we increment the dom's scrollLeft (the current offset from left side of scroll container) to move to the next image on the right
     if (direction === "right") {
       // If the end of the swiper is reached let's too the user back to the beginning
@@ -47,8 +53,15 @@ const Swiper = ({
         setCurrentIndex(currIndex - 1); // Also set the current index to track where we are in the swiper
         imagesRef.current.scrollLeft = (currIndex - 1) * imageWidth;
       }
-    } else {
-      console.log("another type of scroll?");
+      // If the user scrolls to either end of the container, in order to create a loop let's re-orient them to the beginning of the container
+      // NOTE: Only do this if the user decides to set loop equal to true
+    } else if (true) {
+      const currOffset = imagesRef.current.scrollLeft;
+      setCurrentIndex(currIndex);
+      // If you've reached the right most end of the scroll container, append the first image
+      if (currOffset === imageWidth * (images.length - 1)) {
+      } else if (currOffset === 0) {
+      }
     }
   };
 
@@ -82,8 +95,8 @@ const Swiper = ({
         className={styles.alignedImages}
         ref={imagesRef}
       >
-        {images.map((image) => (
-          <img src={image} className={styles.image} />
+        {toMapImages.map((image, index) => (
+          <img key={index} src={image} className={styles.image} />
         ))}
       </div>
     </div>
