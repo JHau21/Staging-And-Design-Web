@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import Routes from "./PageComponents/Navigation/Routes";
+import Button from "./CommonComponents/Button";
 
 import { theme } from "./Theme/index";
 import styles from "./App.module.css";

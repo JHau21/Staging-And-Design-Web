@@ -1,0 +1,31 @@
+.root {
+    border: 3px solid #fbf37c;
+    color: #fbf37c;
+}
+
+/* General idea of active and hover: Invert color scheme to provide clicked and hovering feedback to user */
+
+.root:hover {
+    background-color: #a39b42;
+    cursor: pointer;
+}
+
+.root:active {
+    background-color: #fbf37c;
+    border: 3px solid #a39b42;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.buttonGeneral {
+    background-color: transparent;
+    border-radius: 25px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.disabled {
+    border: 3px solid #d3d3d3;
+    color: #d3d3d3;
+}
