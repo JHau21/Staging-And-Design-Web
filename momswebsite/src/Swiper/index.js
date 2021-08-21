@@ -11,9 +11,10 @@ const Swiper = ({
     "https://media.architecturaldigest.com/photos/56b524de4ac3d842677b9ac0/master/w_2323,h_1548,c_limit/home-office-01.jpg",
   ],
   loop = false,
-  onClick,
+  onClick = () => {}, // In case we want to perform some actions when an image in the swiper is clicked (passes up index of item clicked)
   root = styles.root,
-  autoPlay,
+  autoPlay, // Let the swiper automatically play through images
+  autoPlayDuration = 0.5, // Set the duration in between each auto play swipe (enter duration of autoplay in number of seconds)
   arrow = Arrow,
   // Not sure if we'll ever do this, but in case we want we can custom style pretty much everything in the swiper from outside the swiper
   arrowContainerLeft = styles.arrowContainer,
@@ -25,42 +26,46 @@ const Swiper = ({
   const imagesRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [toMapImages, setToMapImages] = useState([]);
+  const [startTimer, setStartTimer] = useState(false);
+  const [slideDirection, setSlideDirection] = useState("");
 
-  // In order to create a seamless transition when scrolling to either end of the container, let's place the images in state hook to easily modify array
+  // In case we want to modify the way that the swiper works, let's map from a useState hook instead
   useEffect(() => {
     setToMapImages(images);
-  }, []);
+    // If the user wants to enable autoplay of swiper container, this conditional makes it so that the container will continually swipe after a certain number of seconds
+    if (!startTimer && autoPlay) {
+      setStartTimer(true);
+      setTimeout(() => {
+        setStartTimer(false);
+        handleSwipeAndArrowClick("right");
+      }, autoPlayDuration * 1000);
+    }
+  }, [autoPlay, autoPlayDuration, startTimer]);
 
   const handleSwipeAndArrowClick = (direction = "") => {
+    setSlideDirection(direction);
     const imageWidth = imagesRef.current.scrollWidth / images.length; // Get the width of each image
     const currIndex = Math.round(imagesRef.current.scrollLeft / imageWidth); // Need to round the index value to prevent swiper from switching to halfway in between images
     // If we go right we increment the dom's scrollLeft (the current offset from left side of scroll container) to move to the next image on the right
-    if (direction === "right") {
-      // If the end of the swiper is reached let's too the user back to the beginning
-      if (currIndex + 1 === images.length) {
-        setCurrentIndex(0); // Also set the current index to track where we are in the swiper
-        imagesRef.current.scrollLeft = 0;
-      } else {
-        setCurrentIndex(currIndex + 1); // Also set the current index to track where we are in the swiper
-        imagesRef.current.scrollLeft = (currIndex + 1) * imageWidth;
-      }
-      // If we go left we decrement the dom's scrollLeft (the current offset from left side of scroll container) to move to the next image on the left
-    } else if (direction === "left") {
-      if (currIndex - 1 < 0) {
-        setCurrentIndex(images.length); // Also set the current index to track where we are in the swiper
-        imagesRef.current.scrollLeft = images.length * imageWidth;
-      } else {
-        setCurrentIndex(currIndex - 1); // Also set the current index to track where we are in the swiper
-        imagesRef.current.scrollLeft = (currIndex - 1) * imageWidth;
-      }
-      // If the user scrolls to either end of the container, in order to create a loop let's re-orient them to the beginning of the container
-      // NOTE: Only do this if the user decides to set loop equal to true
-    } else if (true) {
-      const currOffset = imagesRef.current.scrollLeft;
-      setCurrentIndex(currIndex);
-      // If you've reached the right most end of the scroll container, append the first image
-      if (currOffset === imageWidth * (images.length - 1)) {
-      } else if (currOffset === 0) {
+    if (loop) {
+      if (direction === "right") {
+        // If the end of the swiper is reached let's too the user back to the beginning
+        if (currIndex + 1 === images.length) {
+          setCurrentIndex(0); // Also set the current index to track where we are in the swiper
+          imagesRef.current.scrollLeft = 0;
+        } else {
+          setCurrentIndex(currIndex + 1); // Also set the current index to track where we are in the swiper
+          imagesRef.current.scrollLeft = (currIndex + 1) * imageWidth;
+        }
+        // If we go left we decrement the dom's scrollLeft (the current offset from left side of scroll container) to move to the next image on the left
+      } else if (direction === "left") {
+        if (currIndex - 1 < 0) {
+          setCurrentIndex(images.length); // Also set the current index to track where we are in the swiper
+          imagesRef.current.scrollLeft = images.length * imageWidth;
+        } else {
+          setCurrentIndex(currIndex - 1); // Also set the current index to track where we are in the swiper
+          imagesRef.current.scrollLeft = (currIndex - 1) * imageWidth;
+        }
       }
     }
   };
@@ -92,11 +97,16 @@ const Swiper = ({
       </div>
       <div
         onScroll={() => handleSwipeAndArrowClick()}
-        className={styles.alignedImages}
+        className={imageContainer}
         ref={imagesRef}
       >
         {toMapImages.map((image, index) => (
-          <img key={index} src={image} className={styles.image} />
+          <img
+            key={index}
+            src={image}
+            className={classnames(styles.imageSlide, imageStyle)}
+            onClick={() => onClick(index)}
+          />
         ))}
       </div>
     </div>

@@ -27,7 +27,13 @@ function App() {
       style={{ backgroundColor: theme.palette.cyan }}
     >
       <Routes />
-      <Swiper root={styles.testingSwiperSizing} />
+      <Swiper
+        root={styles.testingSwiperSizing}
+        loop
+        autoPlay
+        autoPlayDuration={5}
+        onClick={() => console.log("fist my asshole")}
+      />
     </div>
   );
 }
