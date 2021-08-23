@@ -27,23 +27,32 @@ const Swiper = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [toMapImages, setToMapImages] = useState([]);
   const [startTimer, setStartTimer] = useState(false);
-  const [slideDirection, setSlideDirection] = useState("");
+  const [startTimerDelay, setStartTimerDelay] = useState(false);
 
   // In case we want to modify the way that the swiper works, let's map from a useState hook instead
   useEffect(() => {
     setToMapImages(images);
     // If the user wants to enable autoplay of swiper container, this conditional makes it so that the container will continually swipe after a certain number of seconds
     if (!startTimer && autoPlay) {
+      console.log(startTimerDelay);
       setStartTimer(true);
       setTimeout(() => {
         setStartTimer(false);
-        handleSwipeAndArrowClick("right");
       }, autoPlayDuration * 1000);
+      if (!startTimerDelay) {
+        handleSwipeAndArrowClick("right");
+        console.log("one unit execution please");
+      } else {
+        // If the user selects an arrow direction on swiper they may want to spend longer viewing an image, so create an extended delay before any auto swiping begins again
+        setTimeout(() => {
+          setStartTimerDelay(false);
+        }, 20000);
+        console.log("yo yo we do not want to execute");
+      }
     }
-  }, [autoPlay, autoPlayDuration, startTimer]);
+  }, [autoPlay, startTimer, startTimerDelay]);
 
   const handleSwipeAndArrowClick = (direction = "") => {
-    setSlideDirection(direction);
     const imageWidth = imagesRef.current.scrollWidth / images.length; // Get the width of each image
     const currIndex = Math.round(imagesRef.current.scrollLeft / imageWidth); // Need to round the index value to prevent swiper from switching to halfway in between images
     // If we go right we increment the dom's scrollLeft (the current offset from left side of scroll container) to move to the next image on the right
@@ -80,7 +89,11 @@ const Swiper = ({
             ? null
             : { transform: "rotate(180deg)", top: "45%", left: "1%" }
         }
-        onClick={() => handleSwipeAndArrowClick("left")}
+        onClick={() => {
+          console.log("what?", startTimerDelay);
+          setStartTimerDelay(true); // This is intended to create a delay in the autoplay if the user flips to a specific slide, providing extra time to view the slide
+          handleSwipeAndArrowClick("left");
+        }}
       >
         <img className={arrowStyle} src={arrow} />
       </div>
@@ -91,7 +104,11 @@ const Swiper = ({
             ? null
             : { top: "45%", right: "0%" }
         }
-        onClick={() => handleSwipeAndArrowClick("right")}
+        onClick={() => {
+          console.log("what?", startTimerDelay);
+          setStartTimerDelay(true); // This is intended to create a delay in the autoplay if the user flips to a specific slide, providing extra time to view the slide
+          handleSwipeAndArrowClick("right");
+        }}
       >
         <img className={arrowStyle} src={arrow} />
       </div>
