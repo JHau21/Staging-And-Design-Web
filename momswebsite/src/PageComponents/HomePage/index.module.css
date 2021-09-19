@@ -1,5 +1,34 @@
 .root {
-    border: 3px solid blue;
     height: 100%;
     width: 100%;
+    overflow-y: scroll;
+}
+
+.largeTopImage {
+    height: inherit;
+    width: inherit;
+}
+
+.lowerPageContainer {
+    width: inherit;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.textAndButtonContainer {
+    position: absolute;
+    top: 20%;
+    left: 100px;
+    width: 500px;
+    height: 500px;
+}
+
+.topImageContainer {
+    position: relative;
+    height: 800px;
+    width: 100%;
+    z-index: 0;
 }

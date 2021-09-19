@@ -5,6 +5,7 @@
     position: fixed; /* Position fixed to maintain the navigation bar on the top of teh screen as the user moves about that page */
     top: 1%;
     left: 1.5%;
+    z-index: 100;
     width: 97%;
     justify-content: space-between;
     padding-bottom: 5px;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Link,
@@ -32,6 +32,10 @@ const NavigationBar = () => {
       location.pathname === route ? styles.yellow : styles.white
     );
   };
+
+  useEffect(() => {
+    console.log(location?.pathname);
+  }, [location]);
 
   return (
     <div className={styles.root}>
