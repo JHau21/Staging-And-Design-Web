@@ -14,7 +14,7 @@ import styles from "./index.module.css";
 const NavigationBar = () => {
   const fontGeneral = {
     ...theme.font.semiBold,
-    fontSize: theme.fontSize.large,
+    fontSize: theme.fontSize.semiKindOfLarge,
   };
 
   const history = useHistory();
@@ -36,52 +36,62 @@ const NavigationBar = () => {
   return (
     <div className={styles.root}>
       <Router>
-        <div className={determineStyle("/Home", true)}>
+        <div
+          className={determineStyle("/Home", true)}
+          onClick={() => history.push("/Home")}
+        >
           <Link
             style={fontGeneral}
             to={"/Home"}
             className={determineStyle("/Home")}
-            onClick={() => history.push("/Home")}
           >
             Home
           </Link>
         </div>
-        <div className={determineStyle("/Portfolio", true)}>
+        <div
+          className={determineStyle("/Portfolio", true)}
+          onClick={() => history.push("/Portfolio")}
+        >
           <Link
             style={fontGeneral}
             to={"/Portfolio"}
             className={determineStyle("/Portfolio")}
-            onClick={() => history.push("/Portfolio")}
           >
             Portfolio
           </Link>
         </div>
-        <div className={determineStyle("/Services", true)}>
+        <div
+          className={determineStyle("/Services", true)}
+          onClick={() => history.push("/Services")}
+        >
           <Link
             style={fontGeneral}
             to={"/Services"}
             className={determineStyle("/Services")}
-            onClick={() => history.push("/Services")}
           >
             Services
           </Link>
         </div>
-        <div className={determineStyle("/Schedule", true)}>
+        <div
+          className={determineStyle("/Schedule", true)}
+          onClick={() => history.push("/Schedule")}
+        >
           <Link
             style={fontGeneral}
             to={"/Schedule"}
             className={determineStyle("/Schedule")}
-            onClick={() => history.push("/Schedule")}
           >
             Schedule
           </Link>
         </div>
-        <div className={determineStyle("/About", true)}>
+        <div
+          className={determineStyle("/About", true)}
+          onClick={() => history.push("/About")}
+        >
           <Link
             style={fontGeneral}
             to={"/About"}
             className={determineStyle("/About")}
-            onClick={() => history.push("/About")}
           >
             About
           </Link>

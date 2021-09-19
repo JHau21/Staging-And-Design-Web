@@ -27,6 +27,7 @@ const font = {
 const fontSize = {
   header: "30px",
   large: "25px",
+  semiKindOfLarge: "22px",
   semiLarge: "20px",
   medium: "18px",
   small: "16px",
