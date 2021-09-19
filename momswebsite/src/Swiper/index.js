@@ -34,20 +34,17 @@ const Swiper = ({
     setToMapImages(images);
     // If the user wants to enable autoplay of swiper container, this conditional makes it so that the container will continually swipe after a certain number of seconds
     if (!startTimer && autoPlay) {
-      console.log(startTimerDelay);
       setStartTimer(true);
       setTimeout(() => {
         setStartTimer(false);
       }, autoPlayDuration * 1000);
       if (!startTimerDelay) {
         handleSwipeAndArrowClick("right");
-        console.log("one unit execution please");
       } else {
         // If the user selects an arrow direction on swiper they may want to spend longer viewing an image, so create an extended delay before any auto swiping begins again
         setTimeout(() => {
           setStartTimerDelay(false);
         }, 20000);
-        console.log("yo yo we do not want to execute");
       }
     }
   }, [autoPlay, startTimer, startTimerDelay]);
@@ -90,7 +87,6 @@ const Swiper = ({
             : { transform: "rotate(180deg)", top: "45%", left: "1%" }
         }
         onClick={() => {
-          console.log("what?", startTimerDelay);
           setStartTimerDelay(true); // This is intended to create a delay in the autoplay if the user flips to a specific slide, providing extra time to view the slide
           handleSwipeAndArrowClick("left");
         }}
@@ -105,7 +101,6 @@ const Swiper = ({
             : { top: "45%", right: "0%" }
         }
         onClick={() => {
-          console.log("what?", startTimerDelay);
           setStartTimerDelay(true); // This is intended to create a delay in the autoplay if the user flips to a specific slide, providing extra time to view the slide
           handleSwipeAndArrowClick("right");
         }}

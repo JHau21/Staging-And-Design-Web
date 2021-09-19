@@ -32,7 +32,7 @@ function App() {
         loop
         autoPlay
         autoPlayDuration={5}
-        onClick={() => console.log("fist my asshole")}
+        onClick={() => console.log("More friendly dialog please....")}
       />
     </div>
   );
