@@ -1,9 +1,6 @@
 .root {
-    height: 8%;
-    width: 60%;
-    position: fixed; /* Position fixed to maintain the navigation bar on the top of teh screen as the user moves about that page */
-    top: 0;
-    right: 0;
+    height: 100%;
+    width: 45%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -13,7 +10,6 @@
 }
 
 .linkContainer {
-    height: 70%;
     display: flex;
     flex-direction: row;
     align-items: center;

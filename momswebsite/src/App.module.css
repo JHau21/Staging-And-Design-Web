@@ -8,8 +8,7 @@
 	overflow-y: scroll; /* Since the first page is quite large relative to the screen, let's set the overflow as scroll */
 }
 
-.testingSwiperSizing {
-	height: 500px;
-	width: 600px;
-	position: relative;
+.button {
+	width: 10;
+	height: 10;
 }

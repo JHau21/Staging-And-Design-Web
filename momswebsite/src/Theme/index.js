@@ -1,8 +1,11 @@
 const palette = {
   white: "#ffffff",
   yellow: "#fbf37c",
+  hoverYellow: "#a39b42",
+  lightestGray: "#d3d3d3",
   lightGray: "#7f7f7f",
-  darkGary: "#58555a",
+  darkGray: "#58555a",
+  darkestGray: "#282629",
   black: "#000000",
   cyan: "#137575",
 };
@@ -25,6 +28,7 @@ const font = {
 const fontSize = {
   header: "30px",
   large: "25px",
+  semiKindOfLarge: "22px",
   semiLarge: "20px",
   medium: "18px",
   small: "16px",

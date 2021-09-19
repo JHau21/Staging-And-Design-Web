@@ -1,12 +1,16 @@
 import React from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
+import Header from "../../../Header";
 import NavigationBar from "../NavigationBar";
 import Portfolio from "../../PortfolioPage";
 import Services from "../../ServicesPage";
 import Schedule from "../../SchedulePage";
 import Home from "../../HomePage";
 import About from "../../AboutPage";
+import Footer from "../../../Footer";
+
+import styles from "./index.module.css";
 
 /**
  * This contains all routes on the website
@@ -22,11 +26,11 @@ import About from "../../AboutPage";
  */
 const Routes = () => {
   return (
-    <div>
+    <div className={styles.generalOffset}>
       <Router>
         {/* Path renders if the url includes the specified path */}
         <Route path="/">
-          <NavigationBar />
+          <Header />
         </Route>
         <Switch>
           {/* Exact path on the other hand renders only if the url is exactly the specified path */}
@@ -46,6 +50,9 @@ const Routes = () => {
             <About />
           </Route>
         </Switch>
+        <Route path="/">
+          <Footer />
+        </Route>
       </Router>
     </div>
   );
