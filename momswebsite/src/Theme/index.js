@@ -4,7 +4,8 @@ const palette = {
   hoverYellow: "#a39b42",
   lightestGray: "#d3d3d3",
   lightGray: "#7f7f7f",
-  darkGary: "#58555a",
+  darkGray: "#58555a",
+  darkestGray: "#282629",
   black: "#000000",
   cyan: "#137575",
 };
