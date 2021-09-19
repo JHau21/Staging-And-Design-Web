@@ -1,0 +1,43 @@
+.root {
+    border: 3px solid red;
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.alignedImages {
+    overflow-x: scroll;
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    scroll-behavior: smooth;
+    border: 3px solid red;
+}
+
+.arrow {
+    height: 80%;
+    width: 50%;
+}
+
+.arrowContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #ffffff;
+}
+
+.arrowContainer:hover {
+    cursor: pointer;
+}
+
+.image {
+    height: 100%;
+    width: 100%;
+}
